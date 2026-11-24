@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="sk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Život okolo nás</title><style>
+:root{--g:#5f8f45;--bg:#eef6e8;--card:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:#2b3a2a}
+header{padding:40px 20px;text-align:center;background:linear-gradient(#eef6e8,#e6f3dc)}
+h1{margin:0;font-size:clamp(2.8rem,7vw,5rem);color:var(--g);font-weight:900}
+.subtitle{margin-top:10px;font-size:1.1rem}
+.grid{max-width:1200px;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;padding:10px}
+.card{background:var(--card);border-radius:22px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.1);transition:.25s;cursor:pointer}
+.card:hover{transform:translateY(-6px)}
+.card img{width:100%;height:170px;object-fit:cover;background:#dfe8d8}.card h3{padding:15px;margin:0}
+.main{max-width:1200px;margin:auto;padding:10px}.panel{background:white;border-radius:22px;padding:20px;box-shadow:0 8px 20px rgba(0,0,0,.08);margin-bottom:20px}
+.bio{background:#f3faef;border-left:5px solid var(--g);padding:10px;border-radius:10px;margin-top:10px}
+.btn{background:var(--g);color:#fff;border:none;border-radius:10px;padding:10px 14px;margin:5px;cursor:pointer}
+footer{text-align:center;padding:20px;color:#556}
+</style></head><body>
+<header><h1>🌿 ŽIVOT OKOLO NÁS</h1><div class="subtitle">Interaktívny doplnok k biologickej prezentácii</div></header>
+<div class="grid" id="cards"></div>
+<div class="main">
+<div id="topic" class="panel"><h2>Vyber tému</h2><p>Klikni na jednu z kariet vyššie.</p></div>
+<div class="panel"><h2>🎯 Mini kvíz</h2><p id="q"></p><div id="answers"></div><p>Body: <span id="score">0</span></p></div>
+<div class="panel"><h2>📚 Čo musí projekt obsahovať?</h2><ul><li>Názov a úvod</li><li>Hlavnú časť</li><li>Obrázky</li><li>BIO WOW zaujímavosť</li><li>Vlastné pozorovanie</li><li>Záver</li><li>Zdroje</li></ul></div>
+</div>
+<footer>Biológia • Život okolo nás</footer>
+<script>
+const topics=[
+['🐝 Malí pomocníci človeka','Užitočné organizmy ako včely a lienky pomáhajú prírode aj ľuďom.','BIO WOW: Jedna včela počas života vyrobí len malé množstvo medu, ale celé včelstvo dokáže zásobovať úľ.','https://images.unsplash.com/photo-1471193945509-9ad0617afabf?w=900'],
+['🍅 Záhrada plná života','V záhrade žijú rastliny, hmyz aj drobné živočíchy.','BIO WOW: Dáždovky zlepšujú kvalitu pôdy.','https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=900'],
+['🍎 Ovocné poklady','Ovocie obsahuje vitamíny a minerály.','BIO WOW: Jabloň patrí medzi najpestovanejšie ovocné stromy.','https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=900'],
+['🐶 Zvierací spoločníci','Domáce zvieratá potrebujú starostlivosť a pozornosť.','BIO WOW: Psy majú výrazne lepší čuch ako človek.','https://images.unsplash.com/photo-1517849845537-4d257902454a?w=900'],
+['🐌 Nepozvaní hostia','Niektoré organizmy môžu škodiť rastlinám v záhrade.','BIO WOW: Slimáky sa najčastejšie živia listami rastlín.','https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=900'],
+['🐿️ Divokí susedia v meste','Aj v meste žijú vtáky, veverice a ďalšie živočíchy.','BIO WOW: Niektoré vtáky si pamätajú stovky úkrytov potravy.','https://images.unsplash.com/photo-1444464666168-49d633b86797?w=900'],
+['🦠 Neviditeľní spolubývajúci','Mikroorganizmy sú všade okolo nás.','BIO WOW: V ľudskom tele žijú miliardy baktérií.','https://images.unsplash.com/photo-1583912267550-dc2c89782f0f?w=900'],
+['🌼 Život na jednom malom mieste','Na malej ploche môže žiť veľa druhov organizmov.','BIO WOW: Jeden kúsok lúky môže obsahovať desiatky druhov rastlín.','https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=900']];
+const c=document.getElementById('cards');topics.forEach(t=>{let d=document.createElement('div');d.className='card';d.innerHTML=`<img src="${t[3]}"><h3>${t[0]}</h3>`;d.onclick=()=>topic.innerHTML=`<h2>${t[0]}</h2><p>${t[1]}</p><div class='bio'>${t[2]}</div>`;c.appendChild(d)});
+const qs=[['Kto opeľuje kvety?',['Včela','Auto','Kameň'],0],['Čo potrebuje rastlina na rast?',['Vodu a svetlo','Plast','Mobil'],0],['Koľko nôh má hmyz?',['4','6','8'],1]];let i=0,s=0;function load(){if(i>=qs.length){q.textContent='🏆 Kvíz dokončený';answers.innerHTML='';return;}q.textContent=qs[i][0];answers.innerHTML='';qs[i][1].forEach((x,n)=>{let b=document.createElement('button');b.className='btn';b.textContent=x;b.onclick=()=>{if(n===qs[i][2]){s++;score.textContent=s}i++;load()};answers.appendChild(b)})}load();
+</script></body></html>
